@@ -31,6 +31,7 @@ public class SeleniumBase {
 		baseUrl = "http://www.6pm.com";
 		driver = new FirefoxDriver(profile);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 	}
 	
 	/**
