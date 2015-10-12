@@ -27,7 +27,7 @@ public class ZapposSearch extends SeleniumBase {
 	
 	@Test
 	public void A_ZapposSearch_Test() throws InterruptedException {
-		driver.get("http://www.zappos.com");
+		driver.get(baseUrl);
 		jQueryWait(driver);
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div[1]/form/fieldset/input[1]")).clear();
