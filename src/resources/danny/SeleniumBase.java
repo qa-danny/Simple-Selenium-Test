@@ -14,7 +14,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class SeleniumBase {
 
 	protected static WebDriver driver;
-	protected static String baseUrl; //Defined in @BeforeClass
+	protected static String baseUrl = "http://www.zappos.com";
 	
 	/**
 	 * BeforeClass creates the driver and has it set for the entire duration
@@ -28,7 +28,6 @@ public class SeleniumBase {
 		profile.setAcceptUntrustedCertificates(true);
 		profile.setAssumeUntrustedCertificateIssuer(false);
 		
-		baseUrl = "http://www.zappos.com";
 		driver = new FirefoxDriver(profile);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
