@@ -27,7 +27,7 @@ public class ZapposSearch extends SeleniumBase {
 	
 	@Test
 	public void A_ZapposSearch_Test() throws InterruptedException {
-		driver.get(baseUrl);
+		driver.get(zappUrl);
 		jQueryWait(driver);
 		
 		driver.findElement(By.xpath("/html/body/div[3]/div[1]/form/fieldset/input[1]")).clear();
@@ -55,7 +55,7 @@ public class ZapposSearch extends SeleniumBase {
 		//Size 1 Little Kid
 		String size = "1 Little Kid";
 		sizeSelector.selectByVisibleText(size);
-		
+		jQueryWait(driver);
 		driver.findElement(By.id("addToCart")).click();
 		
 		jQueryWait(driver);

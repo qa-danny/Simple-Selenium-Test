@@ -16,7 +16,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class SeleniumBase {
 
 	protected static WebDriver driver;
-	protected static String baseUrl = "http://www.zappos.com";
+	protected static String zappUrl = "http://www.zappos.com";
 	
 	/**
 	 * BeforeClass creates the driver and has it set for the entire duration
