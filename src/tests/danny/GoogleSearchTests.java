@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -49,11 +53,14 @@ public class GoogleSearchTests {
 
 			driver.findElement(By.name("q")).clear();
 			driver.findElement(By.name("q")).sendKeys(searchTerms.get(i));
+			driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
 
 			jQueryWait(driver);
 
 			if (i == 0) {
 				Thread.sleep(1000);
+				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(scrFile, new File("SeleniumTestScreenShots/GoogleSearch/Google Search 1.jpg"));
 				Assert.assertEquals("Las Vegas, NV 89148",
 						driver.findElement(By.xpath("//*[@id=\"wob_loc\"]")).getText());
 			}
@@ -61,28 +68,30 @@ public class GoogleSearchTests {
 			if (i == 1) {
 				Thread.sleep(1000);
 				title = driver.getTitle();
+				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(scrFile, new File("SeleniumTestScreenShots/GoogleSearch/Google Search 2.jpg"));
 				Assert.assertTrue(title.equalsIgnoreCase("The Avengers - Google Search"));
 			}
 
 			if (i == 2) {
 				Thread.sleep(1000);
-				//Clicks search button
-				driver.findElement(By.className("sbico")).click();
+				File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(scrFile, new File("SeleniumTestScreenShots/GoogleSearch/Google Search 3.jpg"));
 
 				//Grabs first result, which is a paid advertisement.
-				WebElement entry = driver.findElement(By.id("vs0p1"));
+				
+				WebElement link = driver.findElement(By.id("vs1p1"));
 
 				//What does the link say!?
-				String vacation = entry.getText();
+				String vacation = link.getText();
 				//System.out.println("\n" + vacation);
-				Assert.assertTrue(vacation.contains("Beaches® Resorts for Kids - Beaches.com"));
+				Assert.assertTrue(vacation.contains("Resorts for Kids‎"));
 
 				//Where does the link point to?
-				String vacationLink = entry.getAttribute("href");
+				String vacationLink = link.getAttribute("href");
 				//System.out.println(vacationLink);
-				Assert.assertTrue(vacationLink.contains("beaches.com/vacation/kids"));
+				Assert.assertTrue(vacationLink.contains("http://www.beaches.com/vacation/kids/"));
 			}
-
 
 		}//Close For Loop
 	}
