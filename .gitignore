@@ -1,4 +1,7 @@
+#Things I don't want uploaded:
 /Aws.properties
+*.jpg
+
 
 # Mobile Tools for Java (J2ME) #
 .mtj.tmp/
