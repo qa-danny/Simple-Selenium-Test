@@ -42,7 +42,7 @@ public class ZapposSearchHTMLUnitDriver {
 	public void ZapposSearch_Test_HTMLUnit() throws InterruptedException, IOException {
 		//Variables:
 		String emptyCart = "Your shopping cart is empty";
-		String size = "1 Little Kid";
+		String size = "5";
 
 		driver.get(zappUrl);
 

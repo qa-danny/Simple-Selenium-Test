@@ -65,7 +65,7 @@ public class ZapposSearch extends SeleniumBase {
 		
 		Select sizeSelector = new Select(driver.findElement(By.id("d3")));
 		//Size 1 Little Kid
-		String size = "1 Little Kid";
+		String size = "5";
 		sizeSelector.selectByVisibleText(size);
 		jQueryWait(driver);
 		driver.findElement(By.id("addToCart")).click();
